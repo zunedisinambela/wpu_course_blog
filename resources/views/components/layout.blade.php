@@ -1,3 +1,7 @@
+{{-- <div>
+    <!-- Do what you can, with what you have, where you are. - Theodore Roosevelt -->
+</div> --}}
+
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-gray-100">
 
@@ -5,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
+    <title>{{ $title }}</title>
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
@@ -13,20 +17,17 @@
 
 <body class="h-full">
     <div class="min-h-full">
-      @include('partials.navbar')
+        <x-navbar />
 
-        <header class="relative bg-white shadow-sm">
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900">@yield('title')</h1>
-            </div>
-        </header>
+        <x-header :title="$title" /> {{-- props => :title=$title --}}
+
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-              @yield('content')
+                {{ $slot }}
             </div>
         </main>
-    </div>
 
+    </div>
 
 </body>
 
