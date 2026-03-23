@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,9 +22,11 @@ class PostFactory extends Factory
         $title = fake()->sentence(rand(6, 8));
         return [
             'title' => $title,
-            'author' => fake()->name(),
+            'author_id' => User::factory(),
             'slug' => Str::slug($title),
             'body' => fake()->text()
         ];
+        // perintah php artisan tinker
+        // App\Models\Post::factory(30)->recycle(User::factory(5)->create())->create()
     }
 }
